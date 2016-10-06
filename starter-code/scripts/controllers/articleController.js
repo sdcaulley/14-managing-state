@@ -10,7 +10,6 @@
   // COMMENT: What does this method do?  What is it's execution path? It's in the middleware chain for /articles/:id. It gets
   //called before articlesController.index. Finds an article by
   //the params id and sets it to the context object as ctx.articles
-  // This method loads by the id
   articlesController.loadById = function(ctx, next) {
     var articleData = function(article) {
       ctx.articles = article;

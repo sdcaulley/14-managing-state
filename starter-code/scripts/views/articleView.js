@@ -13,6 +13,9 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  // This function is called by articleController, which is called as the callback on any page load besides the about and admin pages.
+  //This function is checking to see if the filters are populated, and if not it populates them from the Article categories method and the handlebar compiler compiles.
+
   articleView.populateFilters = function() {
     var options,
       template = Handlebars.compile($('#option-template').text());
@@ -38,6 +41,10 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  //We think there is a type here, and we want "on"change instead of "one"change, but...
+  //This function is called by articleController, which is called as the callback on any page load besides the about and admin pages.
+  //This function is activated when the user changes the value of either filter.
+  //This funciton gets the value of the filter choice and plugs it into the url.
   articleView.handleFilters = function() {
     $('#filters').one('change', 'select', function() {
       var resource = this.id.replace('-filter', '');
@@ -82,6 +89,11 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  //  This function is called by articleController, which is called as the callback on any page load besides the about and admin pages.
+  //  It finds the article we want by id, shows it, and hides all of its siblings(the other 'pages').
+  //  It then removes any article element that is the child of the article id and the appends the text of the article that was selected to the page using our handlebars template.
+  // And then it calls populateFilters and handleFilters to repopulate the filters.
+  //Finally it checks to see how long the articles are and trucates them if they have multiple paragraphs.
   articleView.index = function(articles) {
     $('#articles').show().siblings().hide();
 
